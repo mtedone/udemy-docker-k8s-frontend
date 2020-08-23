@@ -1,0 +1,10 @@
+language: generic
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t alzamabar/udemy-docker-k8s-frontend -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true alzamabar/udemy-docker-k8s-frontend npm run test
