@@ -8,3 +8,15 @@ before_install:
 
 script:
   - docker run -e CI=true alzamabar/udemy-docker-k8s-frontend npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'eu-west-2'
+  app: 'udemy-docker-k8s-frontend'
+  env: 'UdemyDockerK8sFrontend-env'
+  bucket_name: 'elasticbeanstalk-eu-west-2-442309262457'
+  bucket_path: 'udemy-docker-k8s-frontend'
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
